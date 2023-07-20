@@ -2,8 +2,6 @@ baseURL = "https://morganlovett.com"
 languageCode = "en-gb"
 title = "Morgan Lovett"
 
-theme = "m10c"
-
 # Site params
 
 [params]
@@ -16,6 +14,10 @@ theme = "m10c"
   identifier = "home"
   name = "Home"
   url = "/"
+[[menu.main]]
+  identifier = "posts"
+  name = "Posts"
+  url = "/posts/"
 
 # Social links
 
