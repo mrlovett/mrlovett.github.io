@@ -25,6 +25,8 @@
 }
 
 .post-content {
+  margin: 1rem 0;
+
   & > pre,
   .highlight {
     margin: 1em 0;
@@ -51,4 +53,10 @@
   img {
     max-width: 100%;
   }
+}
+
+.post-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }

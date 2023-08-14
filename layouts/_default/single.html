@@ -36,6 +36,7 @@
     {{ if not .Params.noContent }}
       <div class="post-footer">
         {{ if not .Params.noComments }}
+          <span class="page-separator"></span>
           {{ template "_internal/disqus.html" . }}
         {{ end }}
       </div>
