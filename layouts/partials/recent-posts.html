@@ -1,0 +1,44 @@
+<div class="main">
+  <div class="recent-posts-header">
+    <h2>Recent Posts</h2>
+    <a href="/posts">View All</a>
+  </div>
+  <ul class="posts-list">
+    {{ $pages := first 3 ( where .Site.RegularPages.ByDate.Reverse "Type" "posts" ) }}
+    {{- range ($pages) }}
+      <li class="posts-list-item">
+        <span class="posts-list-item-header">
+          <div class="posts-list-item-header-item">
+            {{ partial "icon.html" (dict "ctx" $ "name" "calendar") }}
+            {{ .PublishDate.Format "Jan 2, 2006" }}
+          </div>
+          <span>|</span>
+          <div class="posts-list-item-header-item">
+            {{ partial "icon.html" (dict "ctx" $ "name" "clock") }}
+            {{ .ReadingTime }} min read
+          </div>
+        </span>
+        <a class="posts-list-item-title" href="{{ .Permalink }}">
+          <div>{{ .Title }}</div>
+        </a>
+        {{ if .Description }}
+          <span>{{ .Description }}</span>
+        {{ end }}
+        {{- with .Params.tags }}
+          <span class="posts-list-item-tags">
+            {{ partial "icon.html" (dict "ctx" $ "name" "tag") }}
+            {{- range . -}}
+              {{ with $.Site.GetPage (printf "/%s/%s" "tags" .
+                )
+              }}
+                <a class="tag" href="{{ .Permalink }}">{{ .Title }}</a>
+              {{- end }}
+            {{- end }}
+          </span>
+        {{- end }}
+      </li>
+    {{ else }}
+      <li>No posts available.</li>
+    {{ end }}
+  </ul>
+</div>

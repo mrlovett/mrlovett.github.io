@@ -1,20 +1,56 @@
 {{ define "main" }}
-  <article>
-    <h1>{{ .Title }}</h1>
-    <ul class="posts-list">
-      {{ range where .Paginator.Pages "Type" "!=" "page" }}
-        <li class="posts-list-item">
-          <a class="posts-list-item-title" href="{{ .Permalink }}">{{ .Title }}</a>
-          <span class="posts-list-item-description">
-            {{ partial "icon.html" (dict "ctx" $ "name" "calendar") }}
-            {{ .PublishDate.Format "Jan 2, 2006" }}
-            <span class="posts-list-item-separator">-</span>
-            {{ partial "icon.html" (dict "ctx" $ "name" "clock") }}
-            {{ .ReadingTime }} min read
-          </span>
-        </li>
-      {{ end }}
-    </ul>
-    {{ partial "pagination.html" $ }}
-  </article>
+  <div class="list-page-container">
+    <article class="list-article">
+      <h1>
+        {{ if eq .Kind "term" }}
+          <span class="list-article-header-prefix"
+            >{{ .Data.Singular | title }}:</span
+          >
+        {{ end }}
+        {{ .Title }}
+      </h1>
+      <ul class="posts-list">
+        {{ range where .Paginator.Pages "Type" "!=" "page" }}
+          <li class="posts-list-item">
+            <span class="posts-list-item-header">
+              <span class="posts-list-item-header-item">
+                {{ partial "icon.html" (dict "ctx" $ "name" "calendar") }}
+                {{ .PublishDate.Format "Jan 2, 2006" }}
+              </span>
+              <span class="posts-list-item-separator">|</span>
+              <span class="posts-list-item-header-item">
+                {{ partial "icon.html" (dict "ctx" $ "name" "clock") }}
+                {{ .ReadingTime }} min read
+              </span>
+            </span>
+            <a class="posts-list-item-title" href="{{ .Permalink }}">
+              {{ .Title }}
+            </a>
+            {{ if .Description }}
+              <span>{{ .Description }}</span>
+            {{ end }}
+            {{- with .Params.tags }}
+              <span class="posts-list-item-tags">
+                {{ partial "icon.html" (dict "ctx" $ "name" "tag") }}
+                {{- range . -}}
+                  {{ with $.Site.GetPage (printf "/%s/%s" "tags" .
+                    )
+                  }}
+                    <a class="tag" href="{{ .Permalink }}">{{ .Title }}</a>
+                  {{- end }}
+                {{- end }}
+              </span>
+            {{- end }}
+          </li>
+        {{ else }}
+          <li>No posts available.</li>
+        {{ end }}
+      </ul>
+      {{ partial "pagination.html" $ }}
+    </article>
+    <aside class="list-aside">
+      {{ partial "site-categories.html" . }}
+      {{ partial "site-tags.html" . }}
+    </aside>
+  </div>
 {{ end }}

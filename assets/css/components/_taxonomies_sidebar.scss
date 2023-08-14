@@ -1,0 +1,26 @@
+.taxonomies-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.3);
+}
+
+.taxonomies-list {
+  margin: 0;
+  padding: 0;
+  padding-top: 1rem;
+  list-style: none;
+
+  .taxonomies-list-item {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.taxonomies-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  align-items: center;
+  padding-top: 1rem;
+}

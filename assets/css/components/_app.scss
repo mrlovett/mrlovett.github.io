@@ -1,7 +1,15 @@
 .app-header {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  justify-content: space-between;
   padding: 2.5em;
   background: $darkest-color;
   text-align: center;
+}
+
+.app-header-top {
+  flex: 1;
 }
 
 .app-header-avatar {
@@ -33,6 +41,10 @@
   font-size: 2em;
   margin: 0.67em 0;
   font-weight: bold;
+}
+
+.app-header-description {
+  padding: 1rem 0;
 }
 
 @media (min-width: 940px) {

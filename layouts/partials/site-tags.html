@@ -1,0 +1,11 @@
+<div class="taxonomies.sidebar">
+  <div class="taxonomies-header">
+    <h1>Tags</h1>
+    <a href="/tags">View All</a>
+  </div>
+  <div class="taxonomies-tags">
+    {{ range .Site.Taxonomies.tags }}
+      <a class="tag" href="{{ .Page.Permalink }}">{{ .Page.Title }}</a>
+    {{ end }}
+  </div>
+</div>

@@ -1,0 +1,19 @@
+.home-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  h1 {
+    padding: 0;
+    margin: 0;
+    font-size: 3rem;
+  }
+
+  .home-separator {
+    width: 50%;
+    height: 1px;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    align-self: center;
+  }
+}

@@ -1,35 +1,44 @@
 {{ define "main" }}
   <article class="post">
-    <header class="post-header">
-      <h1 class ="post-title">{{ .Title }}</h1>
-      {{- if ne .Type "page" }}
-      <div class="post-meta">
-        <div>
-          {{ partial "icon.html" (dict "ctx" $ "name" "calendar") }}
-          {{ .PublishDate.Format "Jan 2, 2006" }}
-        </div>
-        <div>
-          {{ partial "icon.html" (dict "ctx" $ "name" "clock") }}
-          {{ .ReadingTime }} min read
-        </div>
-        {{- with .Params.tags }}
-        <div>
-          {{ partial "icon.html" (dict "ctx" $ "name" "tag") }}
-          {{- range . -}}
-            {{ with $.Site.GetPage (printf "/%s/%s" "tags" . ) }}
-              <a class="tag" href="{{ .Permalink }}">{{ .Title }}</a>
+    {{ if not .Params.noContent }}
+      <header class="post-header">
+        <h1 class="post-title">{{ .Title }}</h1>
+        {{- if ne .Type "page" }}
+          <div class="post-meta">
+            <div>
+              {{ partial "icon.html" (dict "ctx" $ "name" "calendar") }}
+              {{ .PublishDate.Format "Jan 2, 2006" }}
+            </div>
+            <div>
+              {{ partial "icon.html" (dict "ctx" $ "name" "clock") }}
+              {{ .ReadingTime }} min read
+            </div>
+            {{- with .Params.tags }}
+              <div>
+                {{ partial "icon.html" (dict "ctx" $ "name" "tag") }}
+                {{- range
+                  .
+                -}}
+                  {{ with $.Site.GetPage (printf "/%s/%s" "tags" . ) }}
+                    <a class="tag" href="{{ .Permalink }}">{{ .Title }}</a>
+                  {{- end }}
+                {{- end }}
+              </div>
             {{- end }}
-          {{- end }}
-        </div>
+          </div>
         {{- end }}
+      </header>
+      <div class="post-content">{{ .Content }}</div>
+    {{ end }}
+    {{ if .Params.homePage }}
+      {{ partial "home-page.html" . }}
+    {{ end }}
+    {{ if not .Params.noContent }}
+      <div class="post-footer">
+        {{ if not .Params.noComments }}
+          {{ template "_internal/disqus.html" . }}
+        {{ end }}
       </div>
-      {{- end }}
-    </header>
-    <div class="post-content">
-      {{ .Content }}
-    </div>
-    <div class="post-footer">
-      {{ template "_internal/disqus.html" . }}
-    </div>
+    {{ end }}
   </article>
 {{ end }}
