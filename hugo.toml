@@ -2,9 +2,8 @@ baseURL = "https://morganlovett.com"
 languageCode = "en-gb"
 
 title = "Morgan Lovett"
-description = "Hi, I'm Morgan! I'm a software developer from Wales, United Kingdome. I write about software development, travel and other things I find interesting."
+description = "Hi, I'm Morgan! I'm a software developer from Wales, United Kingdom. I write about software development, travel and other things I find interesting."
 
-googleAnalyticsId = "G-VX85Z40M5P"
 disqusShortname = "morganlovett"
 
 [social]
@@ -14,8 +13,9 @@ disqusShortname = "morganlovett"
 
 [params]
 	title = "Morgan Lovett"
-	description = "Hi, I'm Morgan! I'm a software developer from Wales, United Kingdome. I write about software development, travel and other things I find interesting."
+	description = "Hi, I'm Morgan! I'm a software developer from Wales, United Kingdom. I write about software development, travel and other things I find interesting."
 	author = "Morgan Lovett"	
+  googleAnalyticsId = "G-VX85Z40M5P"
 
 # Main menu
 
